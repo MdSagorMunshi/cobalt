@@ -19,9 +19,10 @@ WORKDIR /app
 
 COPY --from=build --chown=node:node /prod/api /app
 # COPY --from=build --chown=node:node /app/.git /app/.git
-RUN mkdir -p /app/.git/refs/heads && \
+RUN mkdir -p /app/.git/refs/heads /app/.git/logs && \
     echo "ref: refs/heads/main" > /app/.git/HEAD && \
     echo "0000000000000000000000000000000000000000" > /app/.git/refs/heads/main && \
+    echo "0000000000000000000000000000000000000000 1234567890123456789012345678901234567890 Render <render@example.com> 1710325463 +0000	commit: render deploy" > /app/.git/logs/HEAD && \
     chown -R node:node /app/.git
 
 USER node
