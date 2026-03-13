@@ -23,6 +23,8 @@ RUN mkdir -p /app/.git/refs/heads /app/.git/logs && \
     echo "ref: refs/heads/main" > /app/.git/HEAD && \
     echo "0000000000000000000000000000000000000000" > /app/.git/refs/heads/main && \
     echo "0000000000000000000000000000000000000000 1234567890123456789012345678901234567890 Render <render@example.com> 1710325463 +0000	commit: render deploy" > /app/.git/logs/HEAD && \
+    echo '[remote "origin"]' > /app/.git/config && \
+    echo '	url = https://github.com/imputnet/cobalt.git' >> /app/.git/config && \
     chown -R node:node /app/.git
 
 USER node
